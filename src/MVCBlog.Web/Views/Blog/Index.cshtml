@@ -2,7 +2,7 @@
 @inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = Localizer["Blog"];
+    ViewData["Title"] = "HamurcuBlog";
 }
 @if (!string.IsNullOrEmpty(this.Model.Tag) || !string.IsNullOrEmpty(this.Model.Search))
 {
@@ -11,7 +11,7 @@
             @if (!string.IsNullOrEmpty(this.Model.Tag))
             {
                 <i class="fas fa-tag"></i>
-                <text>Etiket]: @this.Model.Tag</text>
+                <text>Aranan Etiket: @this.Model.Tag</text>
             }
 
             @if (!string.IsNullOrEmpty(this.Model.Tag) && !string.IsNullOrEmpty(this.Model.Search))
@@ -64,7 +64,7 @@
             @foreach (var entry in Model.PopularBlogEntries)
             {
                 <article class="mb-4 cardsmall">
-                    <h2><a href="~/Blog/@entry.Url" class="headertext">@entry.Header</a></h2>
+                    <h6><a href="~/Blog/@entry.Url" class="headertext">@entry.Header</a></h6>
                     <span class="text-muted">
                         <i class="fas fa-calendar-alt"></i> @entry.PublishDate.DateTime.ToFriendlyShortDateString()<br class="d-md-none" />
                     </span>

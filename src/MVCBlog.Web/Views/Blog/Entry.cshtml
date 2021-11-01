@@ -47,6 +47,19 @@
             }
         </ul>
     }
+    @if (Model.BlogEntry.Tags.Count > 0)
+        {
+            int counter = -1;
+            <i class="fas fa-tags ml-md-4"></i>
+            @foreach (var tag in Model.BlogEntry.Tags.Select(t => t.Tag.Name).OrderBy(t => t))
+            {
+                counter++;
+                string split = counter < Model.BlogEntry.Tags.Count - 1 ? "" : string.Empty;
+                <a asp-controller="Blog" asp-action="Index" asp-route-tag="@tag" class="chip">@tag</a>@split
+
+                split = "|";
+            }
+        }
 </article>
 
 <hr class="mb-4" />
@@ -58,7 +71,7 @@
         @foreach (var entry in Model.RelatedBlogEntries)
         {
         <article class="mb-4 cardsmall">
-            <h2><a href="~/Blog/@entry.Url" class="headertext">@entry.Header</a></h2>
+            <h5><a href="~/Blog/@entry.Url" class="headertext">@entry.Header</a></h5>
             <span class="text-muted">
                 <i class="fas fa-calendar-alt"></i> @entry.PublishDate.DateTime.ToFriendlyShortDateString()<br class="d-md-none" />
             </span>
@@ -86,7 +99,7 @@
         <textarea class="form-control" asp-for="Comment.Comment" rows="7"></textarea>
         <span asp-validation-for="Comment.Comment" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-primary">yorum yap</button>
+    <button type="submit" class="btn btn-primary">Yorum yap</button>
 </form>
 
 @foreach (var comment in Model.BlogEntry.BlogEntryComments.OrderByDescending(b => b.CreatedOn))

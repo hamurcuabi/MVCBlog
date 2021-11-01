@@ -20,10 +20,11 @@
     <link rel="alternate" type="application/rss+xml" title="@BlogSettings.CurrentValue.BlogDescription" href="@this.Context.Request.Scheme://@this.Context.Request.Host@this.Context.Request.PathBase}/Blog/Feed" />
 </head>
 <body>
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>
     <div class="container">
         <header style="margin-top:15px">
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom shadow-sm mb-3">
-                <a class="navbar-brand" href="~/"><b>BlogHamur</b></a>
+                <a class="navbar-brand" href="~/"><i class="fas fa-home"></i><b> HamurcuBlog</b></a>
                 @if (SignInManager.IsSignedIn(User))
                 {
                     <a asp-area="" asp-controller="Administration" asp-action="Index" class="nav-link text-dark"><i class="fas fa-tools"></i></a>
@@ -38,21 +39,7 @@
                         @*<li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Feed"><i class="fas fa-rss"></i></a>
                             </li>*@
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="https://github.com/hamurcuabi"><i class="fa fa-github"></i></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="https://www.linkedin.com/in/hamurcu-emre/"><i class="fa fa-linkedin-in"></i></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="https://www.youtube.com/channel/UCsgjCOoNyeg-9pmFWEN4dZw"><i class="fa fa-youtube"></i></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="https://stackoverflow.com/users/7074602/emre-hamurcu"><i class="fa fa-stack-overflow"></i></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="https://medium.com/@@hamurcuabi"><i class="fa fa-medium"></i></a>
-                        </li>
+
 
                     </ul>
                     <form class="form-inline" action="~/" method="get">
@@ -70,6 +57,13 @@
     </div>
     <footer class="border-top footer text-muted text-center d-print-none">
         <div class="container">
+            <ul class="social-icons">
+                <li><a class="medium" href="https://medium.com/@@hamurcuabi" target="_blank"><i class="fa fa-medium"></i></a></li>
+                <li><a class="github" href="https://github.com/hamurcuabi"><i class="fa fa-github" target="_blank"></i></a></li>
+                <li><a class="stackoverflow" href="https://stackoverflow.com/users/7074602/emre-hamurcu" target="_blank"><i class="fa fa-stack-overflow"></i></a></li>
+                <li><a class="youtube" href="https://www.youtube.com/channel/UCsgjCOoNyeg-9pmFWEN4dZw" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                <li><a class="linkedin" href="https://www.linkedin.com/in/hamurcu-emre/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
             <a asp-area="" asp-controller="Privacy" asp-action="Index"><i class="fas fa-user-shield"></i></a>
             <a asp-area="" asp-controller="Privacy" asp-action="Index" class="headertext">Gizlilik</a>
             @if (!SignInManager.IsSignedIn(User))
@@ -94,11 +88,32 @@
                     <button type="submit" class="btn btn-link" style="padding-left: 0;"><i class="fas fa-sign-out-alt"></i> Çıkış</button>
                 </form>
             }
+
         </div>
     </footer>
 
     <script src="~/dist/combined.min.js" asp-append-version="true"></script>
+    <script>
+        //Get the button
+        var mybutton = document.getElementById("myBtn");
 
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -45,13 +45,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="BlogEntry.Content"></label> (<a href="https://de.wikipedia.org/wiki/Markdown" target="_blank">Markdown</a>)
-                <partial name="_InsertImage" />
+
                 <textarea asp-for="BlogEntry.Content" class="form-control" rows="10" id="editor"></textarea>
                 <span asp-validation-for="BlogEntry.Content" class="text-danger"></span>
-              
-                <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+
+                <script src="~/ckeditor/ckeditor.js"></script>
                 <script>
                     CKEDITOR.replace('editor');
+                    CKEDITOR.config.extraPlugins = 'codesnippet';
                 </script>
             </div>
             <div class="form-group">

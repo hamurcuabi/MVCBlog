@@ -118,22 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Author" xml:space="preserve">
-    <value>Author</value>
+    <value>Yazar</value>
   </data>
   <data name="Comment" xml:space="preserve">
-    <value>Comment</value>
+    <value>Yorum</value>
   </data>
   <data name="Content" xml:space="preserve">
-    <value>Content</value>
+    <value>İçerik</value>
   </data>
   <data name="CreatedOn" xml:space="preserve">
-    <value>Created on</value>
+    <value>Oluştruma tarihi</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>Email (optional, used for Gravatar)</value>
+    <value>Email (zorunlu değil)</value>
   </data>
   <data name="Header" xml:space="preserve">
-    <value>Header</value>
+    <value>Başlık</value>
   </data>
   <data name="Homepage" xml:space="preserve">
     <value>Website</value>
@@ -202,46 +202,46 @@
     <value>User is not in role '{0}'.</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Ad</value>
   </data>
   <data name="PublishDate" xml:space="preserve">
-    <value>Publish date</value>
+    <value>Yayınlanma tarihi</value>
   </data>
   <data name="ShortContent" xml:space="preserve">
-    <value>Short content (shown on startpage)</value>
+    <value>Kısa açıklama</value>
   </data>
   <data name="Validation_MaxLength" xml:space="preserve">
-    <value>'{0}' has a maximum length of {1}.</value>
+    <value>'{0}' maximum uzunluk hatası {1}.</value>
   </data>
   <data name="Validation_MaxMinLength" xml:space="preserve">
-    <value>The '{0}' must be at least {2} and at max {1} characters long.</value>
+    <value>'{0}' en az {2} aen çok {1} karakter uzunluğunda olmalıdır</value>
   </data>
   <data name="Validation_Required" xml:space="preserve">
-    <value>'{0}' is required.</value>
+    <value>'{0}' alanı gereklidir</value>
   </data>
   <data name="Visible" xml:space="preserve">
-    <value>Publicly visible</value>
+    <value>Herkes görebilir</value>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>Last name</value>
+    <value>Soyad</value>
   </data>
   <data name="FirstName" xml:space="preserve">
-    <value>First name</value>
+    <value>Adınız</value>
   </data>
   <data name="Visits" xml:space="preserve">
-    <value>Visits</value>
+    <value>Görüntülenme</value>
   </data>
   <data name="Counter" xml:space="preserve">
-    <value>Downloads</value>
+    <value>İndirmeler</value>
   </data>
   <data name="UpdateDate" xml:space="preserve">
-    <value>Last updated</value>
+    <value>Son güncelleme</value>
   </data>
   <data name="SavedSuccessfully" xml:space="preserve">
-    <value>Saved successfully</value>
+    <value>Başarıyla kayıt edildi</value>
   </data>
   <data name="DeletedSuccessfully" xml:space="preserve">
-    <value>Deleted successfully</value>
+    <value>Başarıyla silindi</value>
   </data>
   <data name="PermalinkInUse" xml:space="preserve">
     <value>Permalink '{0}' already in use</value>

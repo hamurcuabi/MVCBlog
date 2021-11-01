@@ -4,8 +4,6 @@
 @{
     ViewData["Title"] = Localizer["Blog"];
 }
-<h1>@ViewData["Title"]</h1>
-
 @if (!string.IsNullOrEmpty(this.Model.Tag) || !string.IsNullOrEmpty(this.Model.Search))
 {
     <div class="card mt-3 mb-3">
@@ -13,7 +11,7 @@
             @if (!string.IsNullOrEmpty(this.Model.Tag))
             {
                 <i class="fas fa-tag"></i>
-                <text>@Localizer["Tag"]: @this.Model.Tag</text>
+                <text>Etiket]: @this.Model.Tag</text>
             }
 
             @if (!string.IsNullOrEmpty(this.Model.Tag) && !string.IsNullOrEmpty(this.Model.Search))
@@ -23,7 +21,7 @@
             @if (!string.IsNullOrEmpty(this.Model.Search))
             {
                 <i class="fas fa-search"></i>
-                <text>@Localizer["Search:"] @this.Model.Search</text>
+                <text>Aranan kelime :<b>@this.Model.Search</b></text>
             }
         </div>
     </div>
@@ -35,8 +33,8 @@
         {
             foreach (var entry in this.Model.Entries)
             {
-                <article class="mb-4">
-                    <h2><a href="~/Blog/@entry.Url">@entry.Header</a></h2>
+                <article class="mb-4 card">
+                    <h2><a href="~/Blog/@entry.Url" class="headertext">@entry.Header</a></h2>
                     <partial name="_Header" model="@entry" />
                 </article>
             }
@@ -45,16 +43,16 @@
         }
         else
         {
-            <p>@Localizer["No blog posts available"]</p>
+            <p>Malesef yayında <b>@this.Model.Search</b> ile ilgili bir yazı bulunamadı :(</p>
         }
     </div>
     <div class="col-lg-3 d-none d-sm-none d-md-none d-lg-block">
         @if (Model.Tags.Count > 0)
         {
-            <h3>@Localizer["Tags"]</h3>
+            <h3>Etiketler</h3>
             @foreach (var tag in Model.Tags)
             {
-                <i class="fas fa-tag"></i> <a asp-controller="Blog" asp-action="Index" asp-route-tag="@tag.Name" class="text-nowrap">@tag.Name</a>
+                <a asp-controller="Blog" asp-action="Index" asp-route-tag="@tag.Name" class="text-nowrap chip headertext">@tag.Name</a>
             }
         }
 
@@ -62,11 +60,16 @@
         <br />
         @if (Model.PopularBlogEntries.Count > 0)
         {
-            <h3>@Localizer["Popular posts"]</h3>
+            <h3>Popüler Yazılar</h3>
             @foreach (var entry in Model.PopularBlogEntries)
             {
-                <a href="~/Blog/@entry.Url">@entry.Header</a>
-                <br />
+                <article class="mb-4 cardsmall">
+                    <h2><a href="~/Blog/@entry.Url" class="headertext">@entry.Header</a></h2>
+                    <span class="text-muted">
+                        <i class="fas fa-calendar-alt"></i> @entry.PublishDate.DateTime.ToFriendlyShortDateString()<br class="d-md-none" />
+                    </span>
+                    <i class="fa fa-chart-line ml-md-4"></i><text> @entry.Visits </text>
+                </article>
             }
         }
     </div>

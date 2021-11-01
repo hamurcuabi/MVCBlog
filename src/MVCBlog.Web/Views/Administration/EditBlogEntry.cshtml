@@ -19,6 +19,7 @@
         </div>
     </div>
 }
+
 <div class="row">
     <div class="col-md-8 col-sm-12">
         <h2>@Localizer["Content"]</h2>
@@ -36,6 +37,7 @@
                     <span asp-validation-for="BlogEntry.Permalink" class="text-danger"></span>
                 </div>
             }
+
             <div class="form-group">
                 <label asp-for="BlogEntry.ShortContent"></label> (<a href="https://de.wikipedia.org/wiki/Markdown" target="_blank">Markdown</a>)
                 <textarea asp-for="BlogEntry.ShortContent" class="form-control" rows="5"></textarea>
@@ -44,8 +46,13 @@
             <div class="form-group">
                 <label asp-for="BlogEntry.Content"></label> (<a href="https://de.wikipedia.org/wiki/Markdown" target="_blank">Markdown</a>)
                 <partial name="_InsertImage" />
-                <textarea asp-for="BlogEntry.Content" class="form-control" rows="10"></textarea>
+                <textarea asp-for="BlogEntry.Content" class="form-control" rows="10" id="editor"></textarea>
                 <span asp-validation-for="BlogEntry.Content" class="text-danger"></span>
+              
+                <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+                <script>
+                    CKEDITOR.replace('editor');
+                </script>
             </div>
             <div class="form-group">
                 <label asp-for="BlogEntry.AuthorId"></label>
@@ -75,7 +82,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="BlogEntry.PublishDate"></label>
-                <input asp-for="BlogEntry.PublishDate" class="form-control form-control-sm gijgodatetimepicker" type="text" value="@Model.BlogEntry.PublishDate.ToString("dd.MM.yyyy HH:mm")" />
+                <input asp-for="BlogEntry.PublishDate" class="form-control form-control-sm gijgodatetimepicker" type="text" value="@Model.BlogEntry.PublishDate" />
                 <span asp-validation-for="BlogEntry.PublishDate" class="text-danger"></span>
             </div>
             <div class="form-group d-print-none">

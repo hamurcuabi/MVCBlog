@@ -53,18 +53,23 @@
 
 @if (Model.RelatedBlogEntries.Count > 0)
 {
-    <h2>@Localizer["Related posts"]</h2>
-    <ul class="list-unstyled">
+    <h2>Benzer Yazılar</h2>
+    <div class="container">
         @foreach (var entry in Model.RelatedBlogEntries)
         {
-            <li><a href="~/Blog/@entry.Url">@entry.Header</a></li>
+        <article class="mb-4 cardsmall">
+            <h2><a href="~/Blog/@entry.Url" class="headertext">@entry.Header</a></h2>
+            <span class="text-muted">
+                <i class="fas fa-calendar-alt"></i> @entry.PublishDate.DateTime.ToFriendlyShortDateString()<br class="d-md-none" />
+            </span>
+            <i class="fa fa-chart-line ml-md-4"></i><text> @entry.Visits </text>
+        </article>
         }
-    </ul>
-
+    </div>
     <hr class="mb-4" />
 }
 
-<h2 id="Comments">@Localizer["Comments"]</h2>
+<h2 id="Comments">Yorumlar</h2>
 <form method="post" class="d-print-none">
     <div class="form-group">
         <label asp-for="Comment.Name"></label>
@@ -77,16 +82,11 @@
         <span asp-validation-for="Comment.Email" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Comment.Homepage"></label>
-        <input class="form-control" asp-for="Comment.Homepage">
-        <span asp-validation-for="Comment.Homepage" class="text-danger"></span>
-    </div>
-    <div class="form-group">
         <label asp-for="Comment.Comment"></label>
         <textarea class="form-control" asp-for="Comment.Comment" rows="7"></textarea>
         <span asp-validation-for="Comment.Comment" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-primary">@Localizer["Submit"]</button>
+    <button type="submit" class="btn btn-primary">yorum yap</button>
 </form>
 
 @foreach (var comment in Model.BlogEntry.BlogEntryComments.OrderByDescending(b => b.CreatedOn))
@@ -94,9 +94,8 @@
     string adminPostClass = comment.AdminPost ? "text-danger" : string.Empty;
     <div class="clearfix">
         <hr class="mb-4" />
-        <h3 class="@adminPostClass">@comment.Name</h3>
         <span class="text-muted">
-            <i class="fas fa-calendar-alt"></i> @comment.CreatedOn.DateTime.ToShortDateString()
+            <i class="fas fa-calendar-alt"></i> @comment.CreatedOn.DateTime.ToFriendlyDateTimeString()
             @if (comment.Homepage != null)
             {
                 <br class="d-md-none" />
@@ -116,13 +115,11 @@
         <div class="mt-2">
             @if (!string.IsNullOrEmpty(comment.Email))
             {
-                string emailHash = comment.Email.ToLowerInvariant().EncryptMD5().ToLowerInvariant();
-                string avatarUrl = $"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.PathBase}/avatar.png";
-                <img class="float-left mr-2 mb-2" alt="@comment.Name" src="https://www.gravatar.com/avatar/@emailHash?d=@System.Uri.EscapeDataString(avatarUrl)" width="64" height="64" />
+                <div class="usercircle"> @comment.Email.Substring(0, 2).ToLowerInvariant()</div>
             }
             else
             {
-                <img class="float-left mr-2 mb-2" alt="@comment.Name" src="~/avatar.png" width="64" height="64" />
+                <div class="usercircle"> @comment.Name.Substring(0, 2).ToLowerInvariant()</div>
             }
 
             <p class="float-left" style="white-space:pre-wrap">@comment.Comment</p>

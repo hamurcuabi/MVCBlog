@@ -57,7 +57,6 @@ namespace MVCBlog.Web
             services.AddDbContext<EFUnitOfWork>(options =>
                 options.UseSqlServer(
                     this.Configuration.GetConnectionString("EFUnitOfWork")));
-            services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<User>(config =>
                 {
@@ -71,7 +70,7 @@ namespace MVCBlog.Web
                 })
                 .AddDefaultUI()
                 .AddEntityFrameworkStores<EFUnitOfWork>()
-                .AddErrorDescriber<Infrastructure.LocalizedIdentityErrorDescriber>();
+                .AddErrorDescriber<LocalizedIdentityErrorDescriber>();
 
             services.AddLocalization();
 
@@ -131,7 +130,6 @@ namespace MVCBlog.Web
             var supportedCultures = new[]
             {
                 new CultureInfo("en"),
-                new CultureInfo("de"),
             };
 
             app.UseRequestLocalization(new RequestLocalizationOptions
@@ -143,33 +141,33 @@ namespace MVCBlog.Web
 
             app.UseHttpsRedirection();
 
-            app.UseSecurityHeaders(builder =>
-            {
-                builder.FeaturePolicySettings.Camera.AllowNone();
+            //app.UseSecurityHeaders(builder =>
+            //{
+            //    builder.FeaturePolicySettings.Camera.AllowNone();
 
-                builder.CspSettings.Defaults.AllowNone();
-                builder.CspSettings.Connect.AllowSelf();
-                builder.CspSettings.Objects.AllowNone();
-                builder.CspSettings.Frame.AllowNone();
-                builder.CspSettings.Scripts.AllowSelf();
+            //    builder.CspSettings.Defaults.AllowNone();
+            //    builder.CspSettings.Connect.AllowSelf();
+            //    builder.CspSettings.Objects.AllowNone();
+            //    builder.CspSettings.Frame.AllowNone();
+            //    builder.CspSettings.Scripts.AllowSelf();
 
-                builder.CspSettings.Styles
-                    .AllowSelf()
-                    .AllowUnsafeInline();
+            //    builder.CspSettings.Styles
+            //        .AllowSelf()
+            //        .AllowUnsafeInline();
 
-                builder.CspSettings.Fonts.AllowSelf();
+            //    builder.CspSettings.Fonts.AllowSelf();
 
-                builder.CspSettings.Images
-                    .AllowSelf()
-                    .Allow("https://i2.wp.com")
-                    .Allow("https://www.gravatar.com");
+            //    builder.CspSettings.Images
+            //        .AllowSelf()
+            //        .Allow("https://i2.wp.com")
+            //        .Allow("https://www.gravatar.com");
 
-                builder.CspSettings.BaseUri.AllowNone();
-                builder.CspSettings.FormAction.AllowSelf();
-                builder.CspSettings.FrameAncestors.AllowNone();
+            //    builder.CspSettings.BaseUri.AllowNone();
+            //    builder.CspSettings.FormAction.AllowSelf();
+            //    builder.CspSettings.FrameAncestors.AllowNone();
 
-                builder.ReferrerPolicy = ReferrerPolicies.NoReferrerWhenDowngrade;
-            });
+            //    builder.ReferrerPolicy = ReferrerPolicies.NoReferrerWhenDowngrade;
+            //});
 
             app.UseStaticFiles(new StaticFileOptions
             {

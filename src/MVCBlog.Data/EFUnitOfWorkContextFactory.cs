@@ -9,13 +9,9 @@ namespace MVCBlog.Data
         {
             var builder = new DbContextOptionsBuilder<EFUnitOfWork>();
 
-            // builder.UseSqlServer("Server=(local);Database=MVCBlog;Trusted_Connection=True;MultipleActiveResultSets=true");
-            builder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MVCBlog-5B146AA6-13E2-40EC-BA3C-3F7981A9F295;Trusted_Connection=True;MultipleActiveResultSets=true;application name=MVCBlog");
+            builder.UseSqlServer("Server=sql.athena.domainhizmetleri.com;Database=emrehamu_blog;User Id=emrehamu_bloguser;Password=%15Q9tcv; Trusted_Connection=false");
             return new EFUnitOfWork(builder.Options);
         }
 
-        public static void Main(string[] args)
-        {
-        }
     }
 }

@@ -61,7 +61,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Author.
+        ///   Looks up a localized string similar to Yazar.
         /// </summary>
         public static string Author {
             get {
@@ -70,7 +70,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Comment.
+        ///   Looks up a localized string similar to Yorum.
         /// </summary>
         public static string Comment {
             get {
@@ -79,7 +79,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Content.
+        ///   Looks up a localized string similar to İçerik.
         /// </summary>
         public static string Content {
             get {
@@ -88,7 +88,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Downloads.
+        ///   Looks up a localized string similar to İndirmeler.
         /// </summary>
         public static string Counter {
             get {
@@ -97,7 +97,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Created on.
+        ///   Looks up a localized string similar to Oluştruma tarihi.
         /// </summary>
         public static string CreatedOn {
             get {
@@ -106,7 +106,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deleted successfully.
+        ///   Looks up a localized string similar to Başarıyla silindi.
         /// </summary>
         public static string DeletedSuccessfully {
             get {
@@ -115,7 +115,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email (optional, used for Gravatar).
+        ///   Looks up a localized string similar to Email (zorunlu değil).
         /// </summary>
         public static string Email {
             get {
@@ -124,7 +124,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First name.
+        ///   Looks up a localized string similar to Adınız.
         /// </summary>
         public static string FirstName {
             get {
@@ -133,7 +133,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Header.
+        ///   Looks up a localized string similar to Başlık.
         /// </summary>
         public static string Header {
             get {
@@ -340,7 +340,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last name.
+        ///   Looks up a localized string similar to Soyad.
         /// </summary>
         public static string LastName {
             get {
@@ -349,7 +349,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name.
+        ///   Looks up a localized string similar to Ad.
         /// </summary>
         public static string Name {
             get {
@@ -367,7 +367,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Publish date.
+        ///   Looks up a localized string similar to Yayınlanma tarihi.
         /// </summary>
         public static string PublishDate {
             get {
@@ -376,7 +376,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Saved successfully.
+        ///   Looks up a localized string similar to Başarıyla kayıt edildi.
         /// </summary>
         public static string SavedSuccessfully {
             get {
@@ -385,7 +385,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Short content (shown on startpage).
+        ///   Looks up a localized string similar to Kısa açıklama.
         /// </summary>
         public static string ShortContent {
             get {
@@ -394,7 +394,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last updated.
+        ///   Looks up a localized string similar to Son güncelleme.
         /// </summary>
         public static string UpdateDate {
             get {
@@ -403,7 +403,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;{0}&apos; has a maximum length of {1}..
+        ///   Looks up a localized string similar to &apos;{0}&apos; maximum uzunluk hatası {1}..
         /// </summary>
         public static string Validation_MaxLength {
             get {
@@ -412,7 +412,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The &apos;{0}&apos; must be at least {2} and at max {1} characters long..
+        ///   Looks up a localized string similar to &apos;{0}&apos; en az {2} aen çok {1} karakter uzunluğunda olmalıdır.
         /// </summary>
         public static string Validation_MaxMinLength {
             get {
@@ -421,7 +421,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;{0}&apos; is required..
+        ///   Looks up a localized string similar to &apos;{0}&apos; alanı gereklidir.
         /// </summary>
         public static string Validation_Required {
             get {
@@ -430,7 +430,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Publicly visible.
+        ///   Looks up a localized string similar to Herkes görebilir.
         /// </summary>
         public static string Visible {
             get {
@@ -439,7 +439,7 @@ namespace MVCBlog.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Visits.
+        ///   Looks up a localized string similar to Görüntülenme.
         /// </summary>
         public static string Visits {
             get {

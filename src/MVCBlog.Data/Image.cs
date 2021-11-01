@@ -10,6 +10,8 @@ namespace MVCBlog.Data
         [Required(ErrorMessageResourceName = "Validation_Required", ErrorMessageResourceType = typeof(Resources))]
         public string Name { get; set; }
 
+        public string test { get; set; }
+
         [NotMapped]
         public string Path
         {

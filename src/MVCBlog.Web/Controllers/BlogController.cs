@@ -356,7 +356,7 @@ namespace MVCBlog.Web.Controllers
         private async Task<List<BlogEntry>> GetRelatedBlogEntries(BlogEntry entry)
         {
             var tagIds = entry.Tags.Select(t => t.TagId).ToList();
-
+            
             var query = await this.unitOfWork.BlogEntries
                 .AsNoTracking()
                 .Where(e => e.Visible && e.PublishDate <= DateTimeOffset.UtcNow && e.Id != entry.Id)

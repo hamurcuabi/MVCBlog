@@ -9,10 +9,10 @@
 
 @if (showBanner)
 {
-    <div id="cookieConsent" class="alert alert-info alert-dismissible fade show mt-5 mb-5" role="alert">
-        @Localizer["Use this space to summarize your privacy and cookie use policy."] <a asp-area="" asp-controller="Home" asp-action="Privacy">@Localizer["Learn More"]</a>.
-        <button type="button" class="accept-policy close" data-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString">
-            <span aria-hidden="true">@Localizer["Accept"]</span>
-        </button>
-    </div>
+<div id="cookieConsent" class="alert alert-info alert-dismissible fade show mt-5 mb-5" role="alert">
+    Gizlilik ve çerez kullanım politikasını kabul ediyorum.<a asp-area="" asp-controller="Home" asp-action="Privacy">Detaylar</a>.
+    <button type="button" class="accept-policy close" data-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString">
+        <span aria-hidden="true">Kabul et</span>
+    </button>
+</div>
 }

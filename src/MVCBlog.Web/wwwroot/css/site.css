@@ -1,30 +1,30 @@
 ﻿/* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  line-height: 58px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 58px; /* Vertically center the text there */
 }
 
 /* Custom styles
 -------------------------------------------------- */
 
 html, body {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Heebo", sans-serif;
 }
 
 html {
@@ -255,4 +255,63 @@ ul .offset {
     100% {
         transform: translate(-50%, -100%);
     }
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 24px;
+    width: 100%;
+}
+
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+.cardsmall {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 8px;
+    width: 100%;
+}
+
+    .cardsmall:hover {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    }
+.chip {
+    display: inline-block;
+    padding: 4px 16px 16px 16px;
+    margin:4px;
+    height: 25px;
+    font-size: 16px;
+    line-height: 20px;
+    border-radius: 12px;
+    background-color: #f1f1f1;
+    transition: 0.3s;
+}
+    .chip:hover {
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+    }
+
+.usercircle {
+    background: #f1f1f1;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex; /* or inline-flex */
+    align-items: center;
+    justify-content: center;
+}
+
+.headertext {
+    color: #000;
+    transition: color ease-in-out .2s;
+    text-decoration: none;
+}
+.headertext2 {
+    color: rgba(0,0,0,0.2);
+    transition: color ease-in-out .2s;
+    text-decoration: none;
+}
+.block {
+    display: block;
 }

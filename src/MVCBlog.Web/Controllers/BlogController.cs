@@ -71,6 +71,7 @@ namespace MVCBlog.Web.Controllers
         [Route("[controller]/Tag/{tag}")]
         public async Task<ActionResult> Index(Paging<BlogEntry> paging, string tag, string search)
         {
+            
             paging.SetSortExpression(p => p.PublishDate);
             paging.SortDirection = SortDirection.Descending;
             paging.Top = EntriesPerPage;
@@ -92,7 +93,7 @@ namespace MVCBlog.Web.Controllers
             {
                 foreach (var item in search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    query = query.Where(e => e.Header.Contains(item));
+                    query = query.Where(e => e.Tags.Any(t => t.Tag.Name.ToLower() == search.ToLower()) || e.Header.ToLower().Contains(search.ToLower()));
                 }
             }
 

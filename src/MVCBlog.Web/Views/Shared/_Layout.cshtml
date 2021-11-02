@@ -18,16 +18,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Heebo">
     <link rel="alternate" type="application/rss+xml" title="@BlogSettings.CurrentValue.BlogDescription" href="@this.Context.Request.Scheme://@this.Context.Request.Host@this.Context.Request.PathBase}/Blog/Feed" />
+    <link rel="stylesheet" href="~/ckeditor/plugins/codesnippet/lib/highlight/styles/sunburst.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
 </head>
 <body>
-    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>
     <div class="container">
         <header style="margin-top:15px">
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom shadow-sm mb-3">
                 <a class="navbar-brand" href="~/"><i class="fas fa-home"></i><b> HamurcuBlog</b></a>
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <a asp-area="" asp-controller="Administration" asp-action="Index" class="nav-link text-dark"><i class="fas fa-tools"></i></a>
+                <a asp-area="" asp-controller="Administration" asp-action="Index" class="nav-link text-dark"><i class="fas fa-tools"></i></a>
                 }
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -49,6 +51,7 @@
                 </div>
             </nav>
         </header>
+        <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>
         <partial name="_CookieConsentPartial" />
 
         <main role="main" class="pb-3">
@@ -70,23 +73,23 @@
             {
                 if (BlogSettings.CurrentValue.NewUsersCanRegister)
                 {
-                    <text>|</text>
-                    <a asp-area="Identity" asp-page="/Account/Register"><i class="fas fa-user-plus"></i></a>
-                    <a asp-area="Identity" asp-page="/Account/Register">Kayıt</a>
+            <text>|</text>
+            <a asp-area="Identity" asp-page="/Account/Register"><i class="fas fa-user-plus"></i></a>
+            <a asp-area="Identity" asp-page="/Account/Register">Kayıt</a>
                 }
-                <text>|</text>
-                <a asp-area="Identity" asp-page="/Account/Login"><i class="fas fa-sign-in-alt"></i></a>
-                <a asp-area="Identity" asp-page="/Account/Login" class="headertext">Giriş</a>
+            <text>|</text>
+            <a asp-area="Identity" asp-page="/Account/Login"><i class="fas fa-sign-in-alt"></i></a>
+            <a asp-area="Identity" asp-page="/Account/Login" class="headertext">Giriş</a>
             }
             else
             {
-                <text>|</text>
-                <a asp-area="Identity" asp-page="/Account/Manage/Index"><i class="fas fa-user-cog"></i></a>
-                <a asp-area="Identity" asp-page="/Account/Manage/Index">Ayarlar</a>
-                <text>|</text>
-                <form style="display: inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/">
-                    <button type="submit" class="btn btn-link" style="padding-left: 0;"><i class="fas fa-sign-out-alt"></i> Çıkış</button>
-                </form>
+            <text>|</text>
+            <a asp-area="Identity" asp-page="/Account/Manage/Index"><i class="fas fa-user-cog"></i></a>
+            <a asp-area="Identity" asp-page="/Account/Manage/Index">Ayarlar</a>
+            <text>|</text>
+            <form style="display: inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/">
+                <button type="submit" class="btn btn-link" style="padding-left: 0;"><i class="fas fa-sign-out-alt"></i> Çıkış</button>
+            </form>
             }
 
         </div>

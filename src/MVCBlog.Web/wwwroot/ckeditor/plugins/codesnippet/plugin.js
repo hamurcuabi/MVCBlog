@@ -80,6 +80,7 @@
 				var hljsHighlighter = new CKEDITOR.plugins.codesnippet.highlighter( {
 					languages: {
 						apache: 'Apache',
+						kotlin: 'Kotlin',
 						bash: 'Bash',
 						coffeescript: 'CoffeeScript',
 						cpp: 'C++',
@@ -485,4 +486,4 @@ CKEDITOR.config.codeSnippet_codeClass = 'hljs';
  * @cfg {String} [codeSnippet_theme='default']
  * @member CKEDITOR.config
  */
-CKEDITOR.config.codeSnippet_theme = 'default';
+CKEDITOR.config.codeSnippet_theme = 'sunburst';

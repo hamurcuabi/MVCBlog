@@ -40,8 +40,8 @@
 
             <div class="form-group">
                 <label asp-for="BlogEntry.ShortContent"></label> (<a href="https://de.wikipedia.org/wiki/Markdown" target="_blank">Markdown</a>)
-                <textarea asp-for="BlogEntry.ShortContent" class="form-control" rows="5"></textarea>
-                <span asp-validation-for="BlogEntry.ShortContent" class="text-danger"></span>
+                <textarea asp-for="BlogEntry.ShortContent" class="form-control" rows="5" id="editor2"></textarea>
+                <span asp-validation-for="BlogEntry.ShortContent" class="text-danger" ></span>
             </div>
             <div class="form-group">
                 <label asp-for="BlogEntry.Content"></label> (<a href="https://de.wikipedia.org/wiki/Markdown" target="_blank">Markdown</a>)
@@ -52,6 +52,7 @@
                 <script src="~/ckeditor/ckeditor.js"></script>
                 <script>
                     CKEDITOR.replace('editor');
+                    CKEDITOR.replace('editor2');
                     CKEDITOR.config.extraPlugins = 'codesnippet';
                 </script>
             </div>

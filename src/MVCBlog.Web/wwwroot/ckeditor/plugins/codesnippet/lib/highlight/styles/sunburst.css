@@ -158,3 +158,9 @@ Sunburst-like style (c) Vasily Polovnyov <vast@whiteants.net>
 .xml .hljs-cdata {
   opacity: 0.5;
 }
+pre {
+    white-space: pre-wrap !important;
+}
+.pre {
+    white-space: pre-wrap !important;
+}

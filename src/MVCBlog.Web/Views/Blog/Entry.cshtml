@@ -11,43 +11,45 @@
 
     if (notVisible || notYetVisible)
     {
-        <div class="alert alert-danger mt-5 mb-5" role="alert">
-            @if (notVisible)
+<div class="alert alert-danger mt-5 mb-5" role="alert">
+    @if (notVisible)
             {
-                <text>@Localizer["Blog entry is not publicly visible."]</text>
+    <text>@Localizer["Blog entry is not publicly visible."]</text>
             }
             else if (notYetVisible)
             {
-                <text>@Localizer["Blog entry will be become publicly visible on:"] @Model.BlogEntry.PublishDate.DateTime.ToShortDateString() @Model.BlogEntry.PublishDate.DateTime.ToShortTimeString()</text>
+    <text>@Localizer["Blog entry will be become publicly visible on:"] @Model.BlogEntry.PublishDate.DateTime.ToShortDateString() @Model.BlogEntry.PublishDate.DateTime.ToShortTimeString()</text>
             }
-        </div>
+</div>
     }
 }
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 col-xs-12"></div>
+        <article class="col-md-8 col-md-offset-2 col-xs-12">
+            <h1>@Model.BlogEntry.Header</h1>
+            <partial name="_Header" model="@Model.BlogEntry" />
+            <markdown Markdown="@Model.BlogEntry.Content"></markdown>
 
-<article class="mb-4">
-    <h1>@Model.BlogEntry.Header</h1>
-    <partial name="_Header" model="@Model.BlogEntry" />
-    <markdown Markdown="@Model.BlogEntry.Content"></markdown>
-
-    @if (Model.BlogEntry.BlogEntryFiles.Count > 0)
+            @if (Model.BlogEntry.BlogEntryFiles.Count > 0)
     {
-        <h2>@Localizer["Downloads"]</h2>
+            <h2>@Localizer["Downloads"]</h2>
 
-        <ul class="list-unstyled">
-            @foreach (var file in Model.BlogEntry.BlogEntryFiles)
+            <ul class="list-unstyled">
+                @foreach (var file in Model.BlogEntry.BlogEntryFiles)
             {
                 <li>
                     <a href="~/Blog/Download/@file.Id">@file.Name</a>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <text> (@file.Counter @Localizer["Downloads"])</text>
+                    <text> (@file.Counter @Localizer["Downloads"])</text>
                     }
                 </li>
             }
-        </ul>
+            </ul>
     }
-    @if (Model.BlogEntry.Tags.Count > 0)
+            @if (Model.BlogEntry.Tags.Count > 0)
         {
             int counter = -1;
             <i class="fas fa-tags ml-md-4"></i>
@@ -55,31 +57,32 @@
             {
                 counter++;
                 string split = counter < Model.BlogEntry.Tags.Count - 1 ? "" : string.Empty;
-                <a asp-controller="Blog" asp-action="Index" asp-route-tag="@tag" class="chip">@tag</a>@split
+            <a asp-controller="Blog" asp-action="Index" asp-route-tag="@tag" class="chip">@tag</a>@split
 
                 split = "|";
             }
         }
-</article>
-
-<hr class="mb-4" />
+        </article>
+    </div>
+</div>
+<hr class="hideshare" />
 
 @if (Model.RelatedBlogEntries.Count > 0)
 {
-    <h2>Benzer Yazılar</h2>
-    <div class="container">
-        @foreach (var entry in Model.RelatedBlogEntries)
+<h2>Benzer Yazılar</h2>
+<div class="container">
+    @foreach (var entry in Model.RelatedBlogEntries)
         {
-        <article class="mb-4 cardsmall">
-            <h5><a href="~/Blog/@entry.Url" class="headertext">@entry.Header</a></h5>
-            <span class="text-muted">
-                <i class="fas fa-calendar-alt"></i> @entry.PublishDate.DateTime.ToFriendlyShortDateString()<br class="d-md-none" />
-            </span>
-            <i class="fa fa-chart-line ml-md-4"></i><text> @entry.Visits </text>
-        </article>
+    <article class="mb-4 cardsmall">
+        <h5><a href="~/Blog/@entry.Url" class="headertext">@entry.Header</a></h5>
+        <span class="text-muted">
+            <i class="fas fa-calendar-alt"></i> @entry.PublishDate.DateTime.ToFriendlyShortDateString()<br class="d-md-none" />
+        </span>
+        <i class="fa fa-chart-line ml-md-4"></i><text> @entry.Visits </text>
+    </article>
         }
-    </div>
-    <hr class="mb-4" />
+</div>
+<hr class="mb-4" />
 }
 
 <h2 id="Comments">Yorumlar</h2>
@@ -105,37 +108,37 @@
 @foreach (var comment in Model.BlogEntry.BlogEntryComments.OrderByDescending(b => b.CreatedOn))
 {
     string adminPostClass = comment.AdminPost ? "text-danger" : string.Empty;
-    <div class="clearfix">
-        <hr class="mb-4" />
-        <span class="text-muted">
-            <i class="fas fa-calendar-alt"></i> @comment.CreatedOn.DateTime.ToFriendlyDateTimeString()
-            @if (comment.Homepage != null)
+<div class="clearfix">
+    <hr class="mb-4" />
+    <span class="text-muted">
+        <i class="fas fa-calendar-alt"></i> @comment.CreatedOn.DateTime.ToFriendlyDateTimeString()
+        @if (comment.Homepage != null)
             {
-                <br class="d-md-none" />
-                <i class="fas fa-link ml-md-4"></i>
-                @comment.Homepage
+        <br class="d-md-none" />
+        <i class="fas fa-link ml-md-4"></i>
+        @comment.Homepage
             }
-            @if (User.Identity.IsAuthenticated)
+        @if (User.Identity.IsAuthenticated)
             {
-                <br class="d-md-none" />
+        <br class="d-md-none" />
 
-                <span class="float-lg-right d-print-none">
-                    <a asp-controller="Blog" asp-action="DeleteComment" asp-route-id="@comment.Id" class="text-danger confirmdelete" data-confirmmessage="@Localizer["Really delete comment?"]"><i class="fas fa-trash"></i></a>
-                    <a asp-controller="Blog" asp-action="DeleteComment" asp-route-id="@comment.Id" class="text-danger confirmdelete" data-confirmmessage="@Localizer["Really delete comment?"]">@Localizer["Delete"]</a>
-                </span>
-            }
+        <span class="float-lg-right d-print-none">
+            <a asp-controller="Blog" asp-action="DeleteComment" asp-route-id="@comment.Id" class="text-danger confirmdelete" data-confirmmessage="@Localizer["Really delete comment?"]"><i class="fas fa-trash"></i></a>
+            <a asp-controller="Blog" asp-action="DeleteComment" asp-route-id="@comment.Id" class="text-danger confirmdelete" data-confirmmessage="@Localizer["Really delete comment?"]">@Localizer["Delete"]</a>
         </span>
-        <div class="mt-2">
-            @if (!string.IsNullOrEmpty(comment.Email))
+            }
+    </span>
+    <div class="mt-2">
+        @if (!string.IsNullOrEmpty(comment.Email))
             {
-                <div class="usercircle"> @comment.Email.Substring(0, 2).ToLowerInvariant()</div>
+        <div class="usercircle"> @comment.Email.Substring(0, 2).ToLowerInvariant()</div>
             }
             else
             {
-                <div class="usercircle"> @comment.Name.Substring(0, 2).ToLowerInvariant()</div>
+        <div class="usercircle"> @comment.Name.Substring(0, 2).ToLowerInvariant()</div>
             }
 
-            <p class="float-left" style="white-space:pre-wrap">@comment.Comment</p>
-        </div>
+        <p class="float-left" style="white-space:pre-wrap">@comment.Comment</p>
     </div>
+</div>
 }

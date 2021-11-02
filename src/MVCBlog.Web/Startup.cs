@@ -149,24 +149,29 @@ namespace MVCBlog.Web
             //    builder.CspSettings.Connect.AllowSelf();
             //    builder.CspSettings.Objects.AllowNone();
             //    builder.CspSettings.Frame.AllowNone();
-            //    builder.CspSettings.Scripts.AllowSelf();
+            //    builder.CspSettings.Scripts
+            //    .AllowAny()
+            //    .AllowUnsafeInline();
 
             //    builder.CspSettings.Styles
-            //        .AllowSelf()
+            //        .AllowAny()
             //        .AllowUnsafeInline();
 
-            //    builder.CspSettings.Fonts.AllowSelf();
+            //    builder.CspSettings.Fonts.AllowAny()
+            //        .AllowUnsafeInline();
 
             //    builder.CspSettings.Images
-            //        .AllowSelf()
-            //        .Allow("https://i2.wp.com")
-            //        .Allow("https://www.gravatar.com");
+            //        .AllowAny()
+            //        .AllowUnsafeInline();
 
-            //    builder.CspSettings.BaseUri.AllowNone();
-            //    builder.CspSettings.FormAction.AllowSelf();
-            //    builder.CspSettings.FrameAncestors.AllowNone();
+            //    builder.CspSettings.BaseUri.AllowAny()
+            //        .AllowUnsafeInline();
+            //    builder.CspSettings.FormAction.AllowAny()
+            //        .AllowUnsafeInline();
+            //    builder.CspSettings.FrameAncestors.AllowAny()
+            //        .AllowUnsafeInline();
 
-            //    builder.ReferrerPolicy = ReferrerPolicies.NoReferrerWhenDowngrade;
+            //    builder.ReferrerPolicy = ReferrerPolicies.UnsafeUrl;
             //});
 
             app.UseStaticFiles(new StaticFileOptions

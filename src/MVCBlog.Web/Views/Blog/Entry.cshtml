@@ -11,16 +11,16 @@
 
     if (notVisible || notYetVisible)
     {
-<div class="alert alert-danger mt-5 mb-5" role="alert">
-    @if (notVisible)
+        <div class="alert alert-danger mt-5 mb-5" role="alert">
+            @if (notVisible)
             {
-    <text>@Localizer["Blog entry is not publicly visible."]</text>
+                <text>@Localizer["Blog entry is not publicly visible."]</text>
             }
             else if (notYetVisible)
             {
-    <text>@Localizer["Blog entry will be become publicly visible on:"] @Model.BlogEntry.PublishDate.DateTime.ToShortDateString() @Model.BlogEntry.PublishDate.DateTime.ToShortTimeString()</text>
+                <text>@Localizer["Blog entry will be become publicly visible on:"] @Model.BlogEntry.PublishDate.DateTime.ToShortDateString() @Model.BlogEntry.PublishDate.DateTime.ToShortTimeString()</text>
             }
-</div>
+        </div>
     }
 }
 
@@ -33,56 +33,59 @@
             <markdown Markdown="@Model.BlogEntry.Content"></markdown>
 
             @if (Model.BlogEntry.BlogEntryFiles.Count > 0)
-    {
-            <h2>@Localizer["Downloads"]</h2>
-
-            <ul class="list-unstyled">
-                @foreach (var file in Model.BlogEntry.BlogEntryFiles)
             {
-                <li>
-                    <a href="~/Blog/Download/@file.Id">@file.Name</a>
-                    @if (User.Identity.IsAuthenticated)
+                <h2>@Localizer["Downloads"]</h2>
+
+                <ul class="list-unstyled">
+                    @foreach (var file in Model.BlogEntry.BlogEntryFiles)
                     {
-                    <text> (@file.Counter @Localizer["Downloads"])</text>
+                        <li>
+                            <a href="~/Blog/Download/@file.Id">@file.Name</a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <text> (@file.Counter @Localizer["Downloads"])</text>
+                            }
+                        </li>
                     }
-                </li>
+                </ul>
             }
-            </ul>
-    }
             @if (Model.BlogEntry.Tags.Count > 0)
-        {
-            int counter = -1;
-            <i class="fas fa-tags ml-md-4"></i>
-            @foreach (var tag in Model.BlogEntry.Tags.Select(t => t.Tag.Name).OrderBy(t => t))
             {
-                counter++;
-                string split = counter < Model.BlogEntry.Tags.Count - 1 ? "" : string.Empty;
-            <a asp-controller="Blog" asp-action="Index" asp-route-tag="@tag" class="chip">@tag</a>@split
+                int counter = -1;
+                <i class="fas fa-tags ml-md-4"></i>
+                @foreach (var tag in Model.BlogEntry.Tags.Select(t => t.Tag.Name).OrderBy(t => t))
+                {
+                    counter++;
+                    string split = counter < Model.BlogEntry.Tags.Count - 1 ? "" : string.Empty;
+                    <a asp-controller="Blog" asp-action="Index" asp-route-tag="@tag" class="text-nowrap chip headertext">@tag</a>@split
 
-                split = "|";
+                    split = "|";
+                }
             }
-        }
         </article>
+        <partial name="_share" model="@Model.BlogEntry" />
+
     </div>
+
 </div>
 <hr class="hideshare" />
 
 @if (Model.RelatedBlogEntries.Count > 0)
 {
-<h2>Benzer Yazılar</h2>
-<div class="container">
-    @foreach (var entry in Model.RelatedBlogEntries)
+    <h2>Benzer Yazılar</h2>
+    <div class="container">
+        @foreach (var entry in Model.RelatedBlogEntries)
         {
-    <article class="mb-4 cardsmall">
-        <h5><a href="~/Blog/@entry.Url" class="headertext">@entry.Header</a></h5>
-        <span class="text-muted">
-            <i class="fas fa-calendar-alt"></i> @entry.PublishDate.DateTime.ToFriendlyShortDateString()<br class="d-md-none" />
-        </span>
-        <i class="fa fa-chart-line ml-md-4"></i><text> @entry.Visits </text>
-    </article>
+            <article class="mb-4 cardsmall">
+                <h5><a href="~/Blog/@entry.Url" class="headertext">@entry.Header</a></h5>
+                <span class="text-muted">
+                    <i class="fas fa-calendar-alt"></i> @entry.PublishDate.DateTime.ToFriendlyShortDateString()<br class="d-md-none" />
+                </span>
+                <i class="fa fa-chart-line ml-md-4"></i><text> @entry.Visits </text>
+            </article>
         }
-</div>
-<hr class="mb-4" />
+    </div>
+    <hr class="mb-4" />
 }
 
 <h2 id="Comments">Yorumlar</h2>
@@ -105,40 +108,50 @@
     <button type="submit" class="btn btn-primary">Yorum yap</button>
 </form>
 
-@foreach (var comment in Model.BlogEntry.BlogEntryComments.OrderByDescending(b => b.CreatedOn))
-{
-    string adminPostClass = comment.AdminPost ? "text-danger" : string.Empty;
-<div class="clearfix">
-    <hr class="mb-4" />
-    <span class="text-muted">
-        <i class="fas fa-calendar-alt"></i> @comment.CreatedOn.DateTime.ToFriendlyDateTimeString()
-        @if (comment.Homepage != null)
-            {
-        <br class="d-md-none" />
-        <i class="fas fa-link ml-md-4"></i>
-        @comment.Homepage
-            }
-        @if (User.Identity.IsAuthenticated)
-            {
-        <br class="d-md-none" />
+@{
+    @foreach (var comment in Model.BlogEntry.BlogEntryComments.OrderByDescending(b => b.CreatedOn))
+    {
+        string adminPostClass = comment.AdminPost ? "text-danger" : string.Empty;
+        <div class="clearfix">
+            <hr class="mb-4" />
+            <span class="text-muted">
+                @if (!string.IsNullOrEmpty(comment.Email))
+                {
+                    <i class="fas fa-calendar-alt"></i> @comment.CreatedOn.DateTime.ToFriendlyDateTimeString(comment.Email)
+                }
+                else
+                {
+                    <i class="fas fa-calendar-alt"></i> @comment.CreatedOn.DateTime.ToFriendlyDateTimeString(comment.Name)
+                }
 
-        <span class="float-lg-right d-print-none">
-            <a asp-controller="Blog" asp-action="DeleteComment" asp-route-id="@comment.Id" class="text-danger confirmdelete" data-confirmmessage="@Localizer["Really delete comment?"]"><i class="fas fa-trash"></i></a>
-            <a asp-controller="Blog" asp-action="DeleteComment" asp-route-id="@comment.Id" class="text-danger confirmdelete" data-confirmmessage="@Localizer["Really delete comment?"]">@Localizer["Delete"]</a>
-        </span>
-            }
-    </span>
-    <div class="mt-2">
-        @if (!string.IsNullOrEmpty(comment.Email))
-            {
-        <div class="usercircle"> @comment.Email.Substring(0, 2).ToLowerInvariant()</div>
-            }
-            else
-            {
-        <div class="usercircle"> @comment.Name.Substring(0, 2).ToLowerInvariant()</div>
-            }
+                @if (comment.Homepage != null)
+                {
+                    <br class="d-md-none" />
+                    <i class="fas fa-link ml-md-4"></i>
+                    @comment.Homepage
+                }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <br class="d-md-none" />
 
-        <p class="float-left" style="white-space:pre-wrap">@comment.Comment</p>
-    </div>
-</div>
+                    <span class="float-lg-right d-print-none">
+                        <a asp-controller="Blog" asp-action="DeleteComment" asp-route-id="@comment.Id" class="text-danger confirmdelete" data-confirmmessage="@Localizer["Really delete comment?"]"><i class="fas fa-trash"></i></a>
+                        <a asp-controller="Blog" asp-action="DeleteComment" asp-route-id="@comment.Id" class="text-danger confirmdelete" data-confirmmessage="@Localizer["Really delete comment?"]">@Localizer["Delete"]</a>
+                    </span>
+                }
+            </span>
+            <div class="mt-2">
+                @{
+                    var random = new Random().Next(1, 13);
+                    var image = random+".png";
+                }
+                <section>
+                    <img class="avatar" src="~/@image" />
+                </section>
+
+
+                <p class="float-left" style="white-space:pre-wrap">@comment.Comment</p>
+            </div>
+        </div>
+    }
 }

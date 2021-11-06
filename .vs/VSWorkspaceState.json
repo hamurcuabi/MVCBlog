@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\MVCBlog.Web",
+    "\\src\\MVCBlog.Web\\Views",
+    "\\src\\MVCBlog.Web\\Views\\Shared"
   ],
-  "SelectedNode": "\\MVCBlog.sln",
+  "SelectedNode": "\\src\\MVCBlog.Web\\Views\\Shared\\_Layout.cshtml",
   "PreviewInSolutionExplorer": false
 }

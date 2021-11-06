@@ -14,7 +14,10 @@ namespace MVCBlog.Web
         {
             return FriendlyDate(Date) + " @ " + Date.ToString("t", ci).ToLower();
         }
-
+        public static string ToFriendlyDateTimeString(this DateTime Date, string name)
+        {
+            return FriendlyDate(Date) + Date.ToString("t", ci).ToLower() + " @" + name;
+        }
         public static string ToFriendlyShortDateString(this DateTime Date)
         {
             return $"{Date.ToString("MMM dd", ci)}, {Date.Year}";

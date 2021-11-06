@@ -5,9 +5,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8" lang="tr" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - @BlogSettings.CurrentValue.BlogName</title>
+    <meta name="description" content="Android, Kotlin, Java, C# gibi bir çok yazılım dilinde edindiğim tecrübelerimi blog yazıları haline getiriyorum" />
+    <meta name="keywords" content="Android, Kotlin, Java,Emre,Hamurcu,hamurcuabi,programlama,yazılım">
+    <meta name="author" content="Emre Hamurcu">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="1 days">
+    <meta name="publisher" content="VS 2019" />
+    <link rel="canonical" href="https://www.emrehamurcu.com/" />
+    <link rel="canonical" href="https://emrehamurcu.com/" />
+
     <link rel="stylesheet" href="~/dist/combined.min.css" asp-append-version="true" />
     <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="~/default.png" />
@@ -19,8 +28,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Heebo">
     <link rel="alternate" type="application/rss+xml" title="@BlogSettings.CurrentValue.BlogDescription" href="@this.Context.Request.Scheme://@this.Context.Request.Host@this.Context.Request.PathBase}/Blog/Feed" />
     <link rel="stylesheet" href="~/ckeditor/plugins/codesnippet/lib/highlight/styles/sunburst.css">
-    <link rel="stylesheet" href="~/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/css/mediumish.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
 </head>
@@ -31,7 +38,7 @@
                 <a class="navbar-brand" href="~/"><i class="fas fa-home"></i><b> HamurcuBlog</b></a>
                 @if (SignInManager.IsSignedIn(User))
                 {
-                <a asp-area="" asp-controller="Administration" asp-action="Index" class="nav-link text-dark"><i class="fas fa-tools"></i></a>
+                    <a asp-area="" asp-controller="Administration" asp-action="Index" class="nav-link text-dark"><i class="fas fa-tools"></i></a>
                 }
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -63,11 +70,11 @@
     <footer class="border-top footer text-muted text-center d-print-none">
         <div class="container">
             <ul class="social-icons">
-                <li><a class="medium" href="https://medium.com/@@hamurcuabi" target="_blank"><i class="fa fa-medium"></i></a></li>
-                <li><a class="github" href="https://github.com/hamurcuabi"><i class="fa fa-github" target="_blank"></i></a></li>
-                <li><a class="stackoverflow" href="https://stackoverflow.com/users/7074602/emre-hamurcu" target="_blank"><i class="fa fa-stack-overflow"></i></a></li>
-                <li><a class="youtube" href="https://www.youtube.com/channel/UCsgjCOoNyeg-9pmFWEN4dZw" target="_blank"><i class="fa fa-youtube"></i></a></li>
-                <li><a class="linkedin" href="https://www.linkedin.com/in/hamurcu-emre/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                <li><a class="medium" rel="nofollow" href="https://medium.com/@@hamurcuabi" target="_blank"><i class="fa fa-medium"></i></a></li>
+                <li><a class="github" rel="nofollow" href="https://github.com/hamurcuabi"><i class="fa fa-github" target="_blank"></i></a></li>
+                <li><a class="stackoverflow"rel="nofollow" href="https://stackoverflow.com/users/7074602/emre-hamurcu" target="_blank"><i class="fa fa-stack-overflow"></i></a></li>
+                <li><a class="youtube" rel="nofollow" href="https://www.youtube.com/channel/UCsgjCOoNyeg-9pmFWEN4dZw" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                <li><a class="linkedin" rel="nofollow" href="https://www.linkedin.com/in/hamurcu-emre/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
             </ul>
             <a asp-area="" asp-controller="Privacy" asp-action="Index"><i class="fas fa-user-shield"></i></a>
             <a asp-area="" asp-controller="Privacy" asp-action="Index" class="headertext">Gizlilik</a>
@@ -75,23 +82,23 @@
             {
                 if (BlogSettings.CurrentValue.NewUsersCanRegister)
                 {
-            <text>|</text>
-            <a asp-area="Identity" asp-page="/Account/Register"><i class="fas fa-user-plus"></i></a>
-            <a asp-area="Identity" asp-page="/Account/Register">Kayıt</a>
+                    <text>|</text>
+                    <a asp-area="Identity" asp-page="/Account/Register"><i class="fas fa-user-plus"></i></a>
+                    <a asp-area="Identity" asp-page="/Account/Register">Kayıt</a>
                 }
-            <text>|</text>
-            <a asp-area="Identity" asp-page="/Account/Login"><i class="fas fa-sign-in-alt"></i></a>
-            <a asp-area="Identity" asp-page="/Account/Login" class="headertext">Giriş</a>
+                <text>|</text>
+                <a asp-area="Identity" asp-page="/Account/Login"><i class="fas fa-sign-in-alt"></i></a>
+                <a asp-area="Identity" asp-page="/Account/Login" class="headertext">Giriş</a>
             }
             else
             {
-            <text>|</text>
-            <a asp-area="Identity" asp-page="/Account/Manage/Index"><i class="fas fa-user-cog"></i></a>
-            <a asp-area="Identity" asp-page="/Account/Manage/Index">Ayarlar</a>
-            <text>|</text>
-            <form style="display: inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/">
-                <button type="submit" class="btn btn-link" style="padding-left: 0;"><i class="fas fa-sign-out-alt"></i> Çıkış</button>
-            </form>
+                <text>|</text>
+                <a asp-area="Identity" asp-page="/Account/Manage/Index"><i class="fas fa-user-cog"></i></a>
+                <a asp-area="Identity" asp-page="/Account/Manage/Index" class="headertext">Ayarlar</a>
+                <text>|</text>
+                <form style="display: inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/">
+                    <button type="submit" class="btn btn-link" style="padding-left: 0;"><i class="fas fa-sign-out-alt"></i> Çıkış</button>
+                </form>
             }
 
         </div>

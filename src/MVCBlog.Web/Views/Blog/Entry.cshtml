@@ -57,7 +57,7 @@
                 {
                     counter++;
                     string split = counter < Model.BlogEntry.Tags.Count - 1 ? "" : string.Empty;
-                    <a asp-controller="Blog" asp-action="Index" asp-route-tag="@tag" class="text-nowrap chip headertext">@tag</a>@split
+                    <a asp-controller="Blog" asp-action="Index" asp-route-tag="@tag" class="text-nowrap chip headertext" title="@tag">@tag</a>@split
 
                     split = "|";
                 }

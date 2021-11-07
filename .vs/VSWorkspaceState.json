@@ -3,9 +3,14 @@
     "",
     "\\src",
     "\\src\\MVCBlog.Web",
+    "\\src\\MVCBlog.Web\\Areas",
+    "\\src\\MVCBlog.Web\\Areas\\Identity",
+    "\\src\\MVCBlog.Web\\Areas\\Identity\\Pages",
+    "\\src\\MVCBlog.Web\\Areas\\Identity\\Pages\\Account",
     "\\src\\MVCBlog.Web\\Views",
+    "\\src\\MVCBlog.Web\\Views\\Blog",
     "\\src\\MVCBlog.Web\\Views\\Shared"
   ],
-  "SelectedNode": "\\src\\MVCBlog.Web\\Views\\Shared\\_Layout.cshtml",
+  "SelectedNode": "\\src\\MVCBlog.Web\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
   "PreviewInSolutionExplorer": false
 }

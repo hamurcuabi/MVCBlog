@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
+@inject SignInManager<MVCBlog.Data.User> SignInManager
+@inject Microsoft.Extensions.Options.IOptionsMonitor<MVCBlog.Business.BlogSettings> BlogSettings
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" lang="tr" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="Android, Kotlin, Java,Emre,Hamurcu,hamurcuabi,programlama,yazılım">
+    <meta name="author" content="Emre Hamurcu">
+    <title>Emre Hamurcu</title>
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="1 days">
+    <meta name="publisher" content="VS 2019" />
+    <link rel="canonical" href="https://www.emrehamurcu.com/" />
+    <link rel="stylesheet" href="~/dist/combined.min.css" asp-append-version="true" />
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="~/default.png" />
+    <link rel="icon" type="image/png" href="~/default.png" sizes="192x192" />
+    <meta name="theme-color" content="#2F5890">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#2F5890">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Heebo">
+</head>
+<body>
+
+    <div class="myContainer">
+
+        <main role="main" class="pb-3">
+
+            @RenderBody()
+        </main>
+
+    </div>
+    <footer class="border-top footer text-muted text-center d-print-none">
+        <div class="container">
+            <ul class="social-icons">
+                <li><a class="medium" rel="nofollow" href="https://medium.com/@@hamurcuabi" target="_blank"><i class="fa fa-medium"></i></a></li>
+                <li><a class="github" rel="nofollow" href="https://github.com/hamurcuabi"><i class="fa fa-github" target="_blank"></i></a></li>
+                <li><a class="stackoverflow" rel="nofollow" href="https://stackoverflow.com/users/7074602/emre-hamurcu" target="_blank"><i class="fa fa-stack-overflow"></i></a></li>
+                <li><a class="youtube" rel="nofollow" href="https://www.youtube.com/channel/UCsgjCOoNyeg-9pmFWEN4dZw" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                <li><a class="linkedin" rel="nofollow" href="https://www.linkedin.com/in/hamurcu-emre/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+
+        </div>
+    </footer>
+
+    <script src="~/dist/combined.min.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

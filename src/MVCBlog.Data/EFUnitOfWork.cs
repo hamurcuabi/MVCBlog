@@ -25,6 +25,7 @@ namespace MVCBlog.Data
         public DbSet<Image> Images { get; set; }
 
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<WrapUp> WrapUps { get; set; }
 
         public DbSet<BlogEntryTag> BlogEntryTags { get; set; }
 

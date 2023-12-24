@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVCBlog.Data.Migrations
 {
     [DbContext(typeof(EFUnitOfWork))]
-    [Migration("20211101151346_test")]
-    partial class test
+    [Migration("20231224085759_mymig2")]
+    partial class mymig2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -273,6 +273,71 @@ namespace MVCBlog.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("MVCBlog.Data.WrapUp", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AddedLineCount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BranchName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("DeletedLineCount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstCommittedDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstCommittedDateMessage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastCommittedDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastCommittedDateMessage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MergedPRCount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MinCommittedDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MinCommittedDateCount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MostCommittedDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MostCommittedDateByDeveloper")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MostCommittedDateCount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MostCommittedDateCountByDeveloper")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProjectName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PushCount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserMail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WrapUps");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

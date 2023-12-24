@@ -1,0 +1,43 @@
+﻿@using MVCBlog.Web.Models
+@model WrapUpViewModel
+@{
+    Layout = "_LayoutWrapUp";
+}
+
+<link rel="stylesheet" href="~/css/wrapup.css">
+<link rel="stylesheet" href="~/js/wrapup.js">
+
+
+<div class="timeline">
+
+    <h2>@Model.Entry.ProjectName</h2>
+    <h1> Lets Wrap Up <u>@Model.Entry.UserMail</u>'s on <u>@Model.Entry.BranchName</u> </h1>
+
+    @foreach (var item in Model.ListOfHtml)
+    {
+
+        <div class="timeline__event  animated fadeInUp delay-1s timeline__event--type@{
+                                    @item.Type
+}">
+            <div class="timeline__event__icon">
+               <i class="@item.Icon"></i>
+            </div>
+            <div class="timeline__event__date">
+                @item.Value
+            </div>
+            <div class="timeline__event__content ">
+                <div class="timeline__event__title">
+                    @item.Title
+                </div>
+                <div class="timeline__event__description">
+                    <p> @item.Description</p>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="Hamurcuabi" data-description="Support me on Buy me a coffee!" data-message="" data-color="#FF813F" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
+

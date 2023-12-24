@@ -4,14 +4,16 @@ using MVCBlog.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MVCBlog.Data.Migrations
 {
     [DbContext(typeof(EFUnitOfWork))]
-    partial class EFUnitOfWorkModelSnapshot : ModelSnapshot
+    [Migration("20231223191234_mymig")]
+    partial class mymig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -297,25 +299,13 @@ namespace MVCBlog.Data.Migrations
                     b.Property<string>("FirstCommittedDateMessage")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LastCommittedDate")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastCommittedDateMessage")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("MergedPRCount")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MinCommittedDate")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MinCommittedDateByDeveloper")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("MinCommittedDateCount")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MinCommittedDateCountByDeveloper")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MostCommittedDate")
@@ -342,6 +332,65 @@ namespace MVCBlog.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("WrapUps");
+                });
+
+            modelBuilder.Entity("MVCBlog.Data.WrapUpTest", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AddedLineCount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BranchName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("DeletedLineCount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstCommittedDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstCommittedDateMessage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MergedPRCount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MinCommittedDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MinCommittedDateCount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MostCommittedDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MostCommittedDateByDeveloper")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MostCommittedDateCount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MostCommittedDateCountByDeveloper")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProjectName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PushCount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserMail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WrapUpsTest");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

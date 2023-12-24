@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.IO.Compression;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Razor.TagHelpers;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,6 +41,8 @@ namespace MVCBlog.Web
 
         public IConfiguration Configuration { get; }
 
+        public IConfigurationRoot ConfigurationRoot { get; set; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -52,6 +57,16 @@ namespace MVCBlog.Web
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.None;
+            });
+
+            // Configure Compression level
+            services.Configure<GzipCompressionProviderOptions>(options => options.Level = CompressionLevel.Optimal);
+
+            // Add Response compression services
+            services.AddResponseCompression(options =>
+            {
+                options.Providers.Add<GzipCompressionProvider>();
+                options.EnableForHttps = true;
             });
 
             services.AddDbContext<EFUnitOfWork>(options =>
@@ -110,6 +125,12 @@ namespace MVCBlog.Web
             services.AddHealthChecks()
                 .AddSqlServer(this.Configuration["ConnectionStrings:EFUnitOfWork"])
                 .AddCheck<LogfileHealthCheck>("Log files");
+
+            // Register the Google Analytics configuration
+            services.Configure<GoogleAnalyticsOptions>(options => Configuration.GetSection("GoogleAnalytics").Bind(options));
+
+            // Register the TagHelperComponent
+            services.AddTransient<ITagHelperComponent, GoogleAnalyticsTagHelperComponent>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -140,39 +161,7 @@ namespace MVCBlog.Web
             });
 
             app.UseHttpsRedirection();
-
-            //app.UseSecurityHeaders(builder =>
-            //{
-            //    builder.FeaturePolicySettings.Camera.AllowNone();
-
-            //    builder.CspSettings.Defaults.AllowNone();
-            //    builder.CspSettings.Connect.AllowSelf();
-            //    builder.CspSettings.Objects.AllowNone();
-            //    builder.CspSettings.Frame.AllowNone();
-            //    builder.CspSettings.Scripts
-            //    .AllowAny()
-            //    .AllowUnsafeInline();
-
-            //    builder.CspSettings.Styles
-            //        .AllowAny()
-            //        .AllowUnsafeInline();
-
-            //    builder.CspSettings.Fonts.AllowAny()
-            //        .AllowUnsafeInline();
-
-            //    builder.CspSettings.Images
-            //        .AllowAny()
-            //        .AllowUnsafeInline();
-
-            //    builder.CspSettings.BaseUri.AllowAny()
-            //        .AllowUnsafeInline();
-            //    builder.CspSettings.FormAction.AllowAny()
-            //        .AllowUnsafeInline();
-            //    builder.CspSettings.FrameAncestors.AllowAny()
-            //        .AllowUnsafeInline();
-
-            //    builder.ReferrerPolicy = ReferrerPolicies.UnsafeUrl;
-            //});
+            app.UseResponseCompression();
 
             app.UseStaticFiles(new StaticFileOptions
             {
@@ -189,6 +178,14 @@ namespace MVCBlog.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            var builder = new ConfigurationBuilder()
+            .SetBasePath(env.ContentRootPath)
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+            .AddEnvironmentVariables();
+
+           ConfigurationRoot=  builder.Build();
 
             app.UseEndpoints(endpoints =>
             {
@@ -209,7 +206,6 @@ namespace MVCBlog.Web
                 context.Database.Migrate();
             }
         }
-
         private static Task WriteResponse(HttpContext httpContext, HealthReport result)
         {
             var writerOptions = new JsonWriterOptions

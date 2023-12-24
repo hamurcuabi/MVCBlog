@@ -11,12 +11,11 @@
     <meta name="description" content="Android, Kotlin, Java, C# gibi bir çok yazılım dilinde edindiğim tecrübelerimi blog yazıları haline getiriyorum" />
     <meta name="keywords" content="Android, Kotlin, Java,Emre,Hamurcu,hamurcuabi,programlama,yazılım">
     <meta name="author" content="Emre Hamurcu">
+    <title>Emre Hamurcu</title>
     <meta name="robots" content="index, follow">
     <meta name="revisit-after" content="1 days">
     <meta name="publisher" content="VS 2019" />
     <link rel="canonical" href="https://www.emrehamurcu.com/" />
-    <link rel="canonical" href="https://emrehamurcu.com/" />
-
     <link rel="stylesheet" href="~/dist/combined.min.css" asp-append-version="true" />
     <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="~/default.png" />
@@ -32,10 +31,15 @@
     <script>hljs.highlightAll();</script>
 </head>
 <body>
-    <div class="container">
+    <div class="myContainer">
         <header style="margin-top:15px">
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom shadow-sm mb-3">
-                <a class="navbar-brand" href="~/"><i class="fas fa-home"></i><b> HamurcuBlog</b></a>
+                <a class="navbar-brand" href="~/">
+                     <img alt="Emre Hamurcu" src="https://user-images.githubusercontent.com/23655824/196413702-3efe9826-29ce-400a-aaff-389788573720.png"
+                     height="56" loading="lazy">
+                    <b> HamurcuBlog</b></a>
+               
+
                 @if (SignInManager.IsSignedIn(User))
                 {
                     <a asp-area="" asp-controller="Administration" asp-action="Index" class="nav-link text-dark"><i class="fas fa-tools"></i></a>
@@ -48,7 +52,7 @@
 
                     <ul class="navbar-nav flex-grow-1">
                         @*<li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Feed"><i class="fas fa-rss"></i></a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Feed"><i class="fas fa-rss"></i></a>
                             </li>*@
 
 
@@ -76,13 +80,7 @@
                 <li><a class="youtube" rel="nofollow" href="https://www.youtube.com/channel/UCsgjCOoNyeg-9pmFWEN4dZw" target="_blank"><i class="fa fa-youtube"></i></a></li>
                 <li><a class="linkedin" rel="nofollow" href="https://www.linkedin.com/in/hamurcu-emre/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
             </ul>
-            <a>
-                <ul class="social-icons">
-                    <li>
-                        <img src="https://github-readme-stats.vercel.app/api?username=hamurcuabi&show_icons=true&locale=tr" alt="hamurcuabi" style="width:100%;" />
-                    </li>
-                </ul>
-            </a>
+
             <a asp-area="" asp-controller="Privacy" asp-action="Index"><i class="fas fa-user-shield"></i></a>
             <a asp-area="" asp-controller="Privacy" asp-action="Index" class="headertext">Gizlilik</a>
             @if (!SignInManager.IsSignedIn(User))

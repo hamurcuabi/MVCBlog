@@ -312,6 +312,7 @@ ul .offset {
     align-items: center;
     justify-content: center;
 }
+
 .avatar {
     vertical-align: middle;
     width: 48px;
@@ -446,3 +447,16 @@ ul .offset {
     .cardcenter:hover {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     }
+
+.chip {
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 13px;
+    background-color: #00E24462;
+    transition: .3s;
+}
+.myContainer {
+    max-width: 85%;
+    margin: auto;
+    padding: 6px;
+}

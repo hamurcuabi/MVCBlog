@@ -29,22 +29,26 @@
 
 <div class="row">
     <div class="col-md-12 col-lg-9">
-        @if (this.Model.Entries.TotalNumberOfItems > 0)
-        {
-            foreach (var entry in this.Model.Entries)
+        <div class="row">
+            @if (this.Model.Entries.TotalNumberOfItems > 0)
             {
-                <article class="mb-4 card">
-                    <h2><a href="~/Blog/@entry.Url" class="headertext">@entry.Header</a></h2>
-                    <partial name="_Header" model="@entry" />
-                </article>
-            }
+                foreach (var entry in this.Model.Entries)
+                {
+                    <div class="col-md-6">
+                        <article class="mb-4 card">
+                            <h2><a href="~/Blog/@entry.Url" class="headertext">@entry.Header</a></h2>
+                            <partial name="_Header" model="@entry" />
+                        </article>
+                    </div>
+                }
 
-            <pager paged-result="this.Model.Entries"></pager>
-        }
-        else
-        {
-            <p>Malesef yayında <b>@this.Model.Search</b> ile ilgili bir yazı bulunamadı :(</p>
-        }
+                <pager paged-result="this.Model.Entries"></pager>
+            }
+            else
+            {
+                <p>Malesef yayında <b>@this.Model.Search</b> ile ilgili bir yazı bulunamadı :(</p>
+            }
+        </div>
     </div>
     <div class="col-lg-3 d-none d-sm-none d-md-none d-lg-block">
         @if (Model.Tags.Count > 0)
@@ -63,13 +67,13 @@
             <h3>Popüler Yazılar</h3>
             @foreach (var entry in Model.PopularBlogEntries)
             {
-                <article class="mb-4 cardsmall">
+                <article class="mb-4 card">
                     <h6><a href="~/Blog/@entry.Url" class="headertext">@entry.Header</a></h6>
                     <span class="text-muted">
                         <i class="fas fa-calendar-alt"></i> @entry.PublishDate.DateTime.ToFriendlyShortDateString()<br class="d-md-none" />
                     </span>
-                    <i class="fa fa-chart-line ml-md-4"></i><text> @entry.Visits </text>
                 </article>
+
             }
         }
     </div>
